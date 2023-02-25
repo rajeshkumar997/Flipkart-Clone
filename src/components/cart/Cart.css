@@ -1,0 +1,59 @@
+.container {
+    background-color: rgb(255, 255, 255);
+    margin-top: 100px;
+    width: 80%;
+    align-items: center;
+    justify-content: center;
+    margin-left: 120px;
+}
+
+.onecomp {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 2px solid gray;
+    padding: 20px;
+    margin: 12px;
+}
+
+.onecomp img {
+    width: 150px;
+}
+
+.desccomp {
+    width: 40%;
+}
+
+.dele {
+    margin-right: 30px;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.count {
+    display: flex;
+    align-items: center;
+}
+
+.count button {
+    width: 50px;
+    height: 50px;
+    border: 2px solid #fff;
+    border-radius: 50%;
+    background-color: aliceblue;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 12px;
+    font-size: 22px;
+}
+
+.pay {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.pay a {
+    text-decoration: none;
+}
