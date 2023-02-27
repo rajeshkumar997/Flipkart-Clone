@@ -1,8 +1,9 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Box, Button, Typography, styled, Link } from '@mui/material'
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import LoginDialog from '../login/LoginDialog';
 import { NavLink } from 'react-router-dom';
+import { useAuth0 } from "@auth0/auth0-react";
+
 
 const Wrapper = styled(Box)(({ theme }) => ({
     margin: '0 3% 0 auto',
@@ -47,16 +48,19 @@ height: 32px;
 `
 
 const CustomButtons = () => {
-
-    const [open, setOpen] = useState(false);
-
-    const openDialog = () => {
-        setOpen(true);
-    }
+    const { loginWithRedirect, isAuthenticated, logout } = useAuth0();
 
     return (
         <Wrapper>
-            <LoginButton variant='contained' onClick={() => openDialog()}>Login</LoginButton>
+            {
+                isAuthenticated ? (
+                    <LoginButton variant='contained' onClick={() => logout({ logoutParams: { returnTo: window.location.origin } })}>
+                        LogOut
+                    </LoginButton>
+                ) : (
+                    <LoginButton variant='contained' onClick={() => loginWithRedirect()} >Login</LoginButton>
+                )
+            }
 
             <Typography style={{ marginTop: 3, width: 135 }}>Become a Seller</Typography>
             <Typography style={{ marginTop: 3 }}>More</Typography>
@@ -67,7 +71,6 @@ const CustomButtons = () => {
                 </Container>
             </NavLink>
 
-            <LoginDialog open={open} setOpen={setOpen} />
         </Wrapper>
     )
 }

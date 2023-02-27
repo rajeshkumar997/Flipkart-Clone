@@ -11,7 +11,7 @@ const Cart = () => {
     const state = GlobalState.state;
     const dispatch = GlobalState.dispatch;
 
-    const [state1, dispatch1] = useReducer(reducer, { count: 1 });
+    // const [state1, dispatch1] = useReducer(reducer, { count: 1 });
     const [totalPrice, setTotalPrice] = useState(0);
 
     function reducer(state, action) {
@@ -35,7 +35,7 @@ const Cart = () => {
 
 
     return (
-        <>
+        <div className='main'>
             <div className='container'>
                 {
                     state.map((item, index) => {
@@ -47,13 +47,13 @@ const Cart = () => {
                                     <p>Rating : {item.rating.rate}</p>
                                     <h4>${item.price}</h4>
                                 </div>
-                                <div className="count">
-                                    <button onClick={() => dispatch1({ type: 'INCREMENT', payload: item })}>+</button>
-                                    <span>{state1.count}</span>
+                                {/* <div className="count">
                                     <button onClick={() => dispatch1({ type: 'DECREMENT', payload: item })}>-</button>
-                                </div>
+                                    <span>{state1.count}</span>
+                                    <button onClick={() => dispatch1({ type: 'INCREMENT', payload: item })}>+</button>
+                                </div> */}
                                 <h1 className='dele' onClick={() => dispatch({ type: 'REMOVE', payload: item })}>
-                                    <i class="fa-solid fa-trash"></i>
+                                    <Button variant="contained">Delete</Button>
                                 </h1>
                             </div>
                         )
@@ -64,9 +64,9 @@ const Cart = () => {
                 <NavLink to='./Payment' >
                     <Button variant="contained">Buy Now</Button>
                 </NavLink>
-                <h1>Total - ${totalPrice}</h1>
+                <h1>Total -${totalPrice}</h1>
             </div>
-        </>
+        </div>
     )
 }
 

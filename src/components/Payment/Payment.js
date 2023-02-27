@@ -1,8 +1,11 @@
+import { useAuth0 } from '@auth0/auth0-react';
 import { Box, Button, TextField } from '@mui/material';
 import React, { useState } from 'react'
 import './payment.css'
 
 const Buy = () => {
+    const { isAuthenticated } = useAuth0();
+
     // define state to keep track of form values and whether they're filled
     const [formValues, setFormValues] = useState({
         pincode: '',
@@ -52,14 +55,21 @@ const Buy = () => {
 
     return (
         <div className="container">
-            <Box className='form'>
-                <TextField variant='standard' name='pincode' type="number" label='Enter Pincode . .' value={formValues.pincode} onChange={handleInputChange} onBlur={handleFormValuesChange} />
-                <TextField variant='standard' name='name' type="text" label='Enter Name . . ' value={formValues.name} onChange={handleInputChange} onBlur={handleFormValuesChange} />
-                <TextField variant='standard' name='email' type="email" label='Enter Email . .' value={formValues.email} onChange={handleInputChange} onBlur={handleFormValuesChange} />
-                <TextField variant='standard' name='phone' type="number" label='Enter Phone Number . . ' value={formValues.phone} onChange={handleInputChange} onBlur={handleFormValuesChange} />
-                <TextField label="Enter Address . ." multiline rows={4} variant="filled" name='address' value={formValues.address} onChange={handleInputChange} onBlur={handleFormValuesChange} />
-                <Button variant="contained" onClick={handleOrderButtonClick}>Order Now</Button>
-            </Box>
+            {
+                isAuthenticated ? (
+                    <Box className='form'>
+                        <TextField variant='standard' name='pincode' type="number" label='Enter Pincode . .' value={formValues.pincode} onChange={handleInputChange} onBlur={handleFormValuesChange} />
+                        <TextField variant='standard' name='name' type="text" label='Enter Name . . ' value={formValues.name} onChange={handleInputChange} onBlur={handleFormValuesChange} />
+                        <TextField variant='standard' name='email' type="email" label='Enter Email . .' value={formValues.email} onChange={handleInputChange} onBlur={handleFormValuesChange} />
+                        <TextField variant='standard' name='phone' type="number" label='Enter Phone Number . . ' value={formValues.phone} onChange={handleInputChange} onBlur={handleFormValuesChange} />
+                        <TextField label="Enter Address . ." multiline rows={4} variant="filled" name='address' value={formValues.address} onChange={handleInputChange} onBlur={handleFormValuesChange} />
+                        <Button variant="contained" onClick={handleOrderButtonClick}>Order Now</Button>
+                    </Box>
+                ) : (
+                    alert("Please login first..")
+                )
+            }
+
         </div>
     )
 }
