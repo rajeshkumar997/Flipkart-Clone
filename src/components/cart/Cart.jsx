@@ -29,6 +29,7 @@ const Cart = () => {
         let count = 0;
         state.map((i) => {
             count += i.price;
+            // count = count + (count * (18 / 100));
         })
         setTotalPrice(count);
     }, [state])
