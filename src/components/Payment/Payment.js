@@ -2,6 +2,8 @@ import { useAuth0 } from '@auth0/auth0-react';
 import { Box, Button, TextField } from '@mui/material';
 import React, { useState } from 'react'
 import './payment.css'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Buy = () => {
     const { isAuthenticated } = useAuth0();
@@ -34,10 +36,20 @@ const Buy = () => {
     // define function to show alert and clear form data when order button is clicked
     const handleOrderButtonClick = () => {
         if (formFilled) {
-            alert(`Your Order successfully Done . . .`);
+            toast.success("Your Order successfully Done . . .", {
+                position: "top-right",
+                autoClose: 2000,
+                theme: "dark",
+            });
+            // alert(`Your Order successfully Done . . .`);
             handleOrderPlacement();
         } else {
-            alert(`Please fill data first`);
+            toast.error("Please fill data first", {
+                position: "top-right",
+                autoClose: 2000,
+                theme: "light",
+            });
+            // alert(`Please fill data first`);
         }
     }
 
@@ -67,9 +79,11 @@ const Buy = () => {
                     </Box>
                 ) : (
                     alert("Please login first..")
+
+
                 )
             }
-
+            <ToastContainer />
         </div>
     )
 }

@@ -14,16 +14,16 @@ const Cart = () => {
     // const [state1, dispatch1] = useReducer(reducer, { count: 1 });
     const [totalPrice, setTotalPrice] = useState(0);
 
-    function reducer(state, action) {
-        switch (action.type) {
-            case 'INCREMENT':
-                return { count: state.count + 1 };
-            case 'DECREMENT':
-                return { count: state.count - 1 };
-            default:
-                throw new Error();
-        }
-    }
+    // function reducer(state, action) {
+    //     switch (action.type) {
+    //         case 'INCREMENT':
+    //             return { count: state.count + 1 };
+    //         case 'DECREMENT':
+    //             return { count: state.count - 1 };
+    //         default:
+    //             throw new Error();
+    //     }
+    // }
 
     useEffect(() => {
         let count = 0;
