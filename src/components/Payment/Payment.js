@@ -4,9 +4,11 @@ import React, { useState } from 'react'
 import './payment.css'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useNavigate } from 'react-router-dom';
 
 const Buy = () => {
     const { isAuthenticated } = useAuth0();
+    const form = useNavigate()
 
     // define state to keep track of form values and whether they're filled
     const [formValues, setFormValues] = useState({
@@ -35,22 +37,26 @@ const Buy = () => {
 
     // define function to show alert and clear form data when order button is clicked
     const handleOrderButtonClick = () => {
+
         if (formFilled) {
             toast.success("Your Order successfully Done . . .", {
                 position: "top-right",
                 autoClose: 2000,
                 theme: "dark",
             });
-            // alert(`Your Order successfully Done . . .`);
+            form("/")
             handleOrderPlacement();
+
         } else {
             toast.error("Please fill data first", {
                 position: "top-right",
                 autoClose: 2000,
                 theme: "light",
             });
-            // alert(`Please fill data first`);
+
         }
+
+
     }
 
     // define function to clear form data
