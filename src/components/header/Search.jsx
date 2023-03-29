@@ -38,7 +38,7 @@ const Search = () => {
 
     const getText = (text) => {
         setText(text);
-        setOpen(false)
+        setOpen(text ? false : true);
     }
 
     return (
@@ -51,10 +51,10 @@ const Search = () => {
                 text &&
                 <ListWrapper hidden={open}>
                     {
-                        products.filter(product => product.title.toLowerCase().includes(text.toLowerCase())).map((product, index) => (
+                        products.filter(product => product.title.toLowerCase().includes(text.toLowerCase())).map((product) => (
                             <ListItem>
-                                <Link
-                                    state={{ id: index }} to={`product/${index}`}
+                                <Link key={product.id}
+                                    state={{ id: product.id - 1 }} to={`product/${product.id}`}
                                     style={{ textDecoration: 'none', color: 'inherit' }}
                                     onClick={() => setOpen(true)}
                                 >

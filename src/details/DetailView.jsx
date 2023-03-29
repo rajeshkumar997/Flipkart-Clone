@@ -30,18 +30,7 @@ const RightContainer = styled(Grid)`
     }
 `;
 
-// const API = "https://content.newtonschool.co/v1/pr/63b6c911af4f30335b4b3b89/products"
-
 const DetailView = () => {
-  // const { getSingleProduct, isSingleLoading, singleProduct } = useProductContext();
-  // const { id } = useParams();
-
-  // const { id: raj, title, price, description, category, image, rating, } = singleProduct;
-
-  // useEffect(() => {
-  //   getSingleProduct(`${API}?id=${id}`);
-  // }, [])
-
 
   const operation = useLocation();
   const { id } = operation.state
