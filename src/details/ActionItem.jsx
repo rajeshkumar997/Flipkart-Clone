@@ -22,9 +22,10 @@ const Image = styled('img')({
 });
 
 const StyledButton = styled(Button)(({ theme }) => ({
-    width: '48%',
+    width: '42%',
     borderRadius: 2,
     height: 50,
+    marginTop: 10,
     [theme.breakpoints.down('lg')]: {
         width: '46%'
     },
@@ -44,7 +45,7 @@ const ActionItem = ({ product }) => {
         <LeftContainer>
 
             <Box style={{ padding: '15px  20px', border: '1px solid #f0f0f0', width: '87%' }}>
-                <Image src={product.image} alt='product' style={{ width: "80%" }} />
+                <Image src={product.image} alt='product' style={{ width: "100%" }} />
             </Box>
 
             <StyledButton onClick={() => {

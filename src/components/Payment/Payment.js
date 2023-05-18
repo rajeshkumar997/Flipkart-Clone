@@ -85,8 +85,6 @@ const Buy = () => {
                     </Box>
                 ) : (
                     alert("Please login first..")
-
-
                 )
             }
             <ToastContainer />

@@ -62,7 +62,7 @@ const Text = styled(Typography)`
 `;
 
 const Image = styled('img')({
-    width: 'auto',
+    width: 160,
     height: 150
 });
 
@@ -102,8 +102,8 @@ const Slide = ({ title, timer }) => {
                 containerClass="carousel-container"
             >
                 {
-                    products.map((product,index) => (
-                        <Link state={{id: index}} to={`product/${index}`} style={{ textDecoration: 'none' }}>
+                    products.map((product, index) => (
+                        <Link state={{ id: index }} to={`product/${index}`} style={{ textDecoration: 'none' }}>
                             <Box textAlign="center" style={{ padding: '25px 15px' }}>
                                 <Image src={product.image} alt='product' />
                                 <Text style={{ fontWeight: 600, color: '#212121' }}>{product.title}</Text>
