@@ -95,7 +95,7 @@ const Footer = () => {
                         <span>&copy; 2007-2023 Flipkart.com</span>
                     </div>
                     <div className="col col-md-5 col-xs-6">
-                        <img className="img-fluid" src="//img1a.flixcart.com/www/linchpin/fk-cp-zion/img/payment-method_7934bc.svg" />
+                        <img className="img-fluid" src="//img1a.flixcart.com/www/linchpin/fk-cp-zion/img/payment-method_7934bc.svg" alt='img' />
                     </div>
                 </div>
 
