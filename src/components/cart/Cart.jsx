@@ -1,19 +1,23 @@
 import { Button, styled, Typography } from '@mui/material';
 import React, { useContext, useEffect, useState } from 'react';
-import { NavLink } from 'react-router-dom';
 import { CartContext } from '../../context/productcontex';
 import './Cart.css';
 import EmptyCart from './EmptyCart';
+import { useAuth0 } from '@auth0/auth0-react';
+import 'react-toastify/dist/ReactToastify.css';
+import { toast, ToastContainer } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 
-const StyledButton = styled(Button)`
-    display: flex;
-    margin-left: auto;
-    background: #fb641b;
-    color: #fff;
-    border-radius: 2px;
-    width: 250px;
-    height: 51px;
-`;
+
+// const StyledButton = styled(Button)`
+//     display: flex;
+//     margin-left: auto;
+//     background: #fb641b;
+//     color: #fff;
+//     border-radius: 2px;
+//     width: 250px;
+//     height: 51px;
+// `;
 
 const SmallText = styled(Typography)`
     color: #878787;
@@ -26,8 +30,10 @@ const Cart = () => {
     const state = GlobalState.state;
     const dispatch = GlobalState.dispatch;
 
-    const [countMap, setCountMap] = useState({}); // Track count for each item using a map
+    const { isAuthenticated } = useAuth0();
+    const navigate = useNavigate();
 
+    const [countMap, setCountMap] = useState({}); // Track count for each item using a map
     const [totalPrice, setTotalPrice] = useState(0);
 
     const fassured = 'https://static-assets-web.flixcart.com/www/linchpin/fk-cp-zion/img/fa_62673a.png';
@@ -67,9 +73,21 @@ const Cart = () => {
         });
     };
 
+    const showForm = () => {
+        if (isAuthenticated) {
+            navigate('./Payment');
+        } else {
+            toast.error("Please Login first", {
+                position: "top-right",
+                autoClose: 2000,
+                theme: "light",
+            });
+        }
+    }
+
     return (
         <div className='main'>
-            <div className='container'>
+            <div className='cont'>
                 {state.length > 0 ? (
                     state.map((item, index) => (
                         <div className='onecomp' key={index}>
@@ -96,15 +114,17 @@ const Cart = () => {
                     <EmptyCart />
                 )}
             </div>
-            {state.length > 0 && (
-                <div className='pay'>
-                    <NavLink to='./Payment'>
-                        <StyledButton variant='contained'>Place Order</StyledButton>
-                    </NavLink>
-                    <h1>Total - ${totalPrice}</h1>
-                </div>
-            )}
+            <div className='openForm'>
+                {state.length > 0 && (
+                    <div className='pay'>
+                        <Button variant='contained' onClick={showForm}>Place Order</Button>
+                        <h1>Total - ${totalPrice}</h1>
+                    </div>
+                )}
+            </div>
+            <ToastContainer />
         </div>
+
     );
 };
 

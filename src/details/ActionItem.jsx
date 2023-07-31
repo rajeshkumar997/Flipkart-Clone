@@ -12,25 +12,30 @@ import { useAuth0 } from '@auth0/auth0-react';
 const LeftContainer = styled(Box)(({ theme }) => ({
     minWidth: '40%',
     padding: '60px 0 0 80px',
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down('lg')]: {
         padding: '20px 40px'
     }
 }))
 
 const Image = styled('img')({
-    padding: '25px'
+    padding: '15px',
+    width: '90%'
 });
 
 const StyledButton = styled(Button)(({ theme }) => ({
-    width: '42%',
+    width: '46%',
     borderRadius: 2,
     height: 50,
     marginTop: 10,
+    color: "#FFF",
     [theme.breakpoints.down('lg')]: {
         width: '46%'
     },
     [theme.breakpoints.down('sm')]: {
         width: '48%'
+    },
+    [theme.breakpoints.down('sm')]: {
+        width: '48%',
     }
 }));
 
@@ -44,7 +49,7 @@ const ActionItem = ({ product }) => {
     return (
         <LeftContainer>
 
-            <Box style={{ padding: '15px  20px', border: '1px solid #f0f0f0', width: '87%' }}>
+            <Box style={{ padding: '15px  20px', border: '1px solid #f0f0f0' }}>
                 <Image src={product.image} alt='product' style={{ width: "100%" }} />
             </Box>
 

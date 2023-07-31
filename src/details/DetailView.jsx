@@ -1,13 +1,8 @@
-// import React, { useEffect } from 'react'
 import { products } from './../constants/data';
 import { Box, Grid, styled } from '@mui/material'
 import ActionItem from './ActionItem'
 import ProductDetail from './ProductDetail'
 import { useLocation } from 'react-router-dom';
-
-// import { useParams } from 'react-router-dom';
-// import { useProductContext } from '../context/productcontex'
-
 
 const Component = styled(Box)`
     margin-top: 55px;
@@ -24,9 +19,9 @@ const Container = styled(Grid)(({ theme }) => ({
 
 const RightContainer = styled(Grid)`
     margin-top: 50px;
+    padding-left: 40px;
     & > p {
         margin-top: 10px;
-        margin-left: 20px;
     }
 `;
 

@@ -5,10 +5,10 @@ import { navData } from '../../constants/data'
 const Component = styled(Box)(({ theme }) => ({
     display: 'flex',
     justifyContent: 'space-between',
-    margin: '55px 130px 0 130px !important',
+    margin: '55px 130px 0 130px',
     overflowX: 'overlay',
     [theme.breakpoints.down('lg')]: {
-        margin: '0px !important'
+        margin: 0
     }
 }))
 

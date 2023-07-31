@@ -20,6 +20,8 @@ const RightComponent = styled(Box)(({ theme }) => ({
     marginLeft: 10,
     padding: 5,
     textAlign: 'center',
+    display: 'flex',
+    justifyContent: 'center',
     [theme.breakpoints.down('md')]: {
         display: 'none'
     }

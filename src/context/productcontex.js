@@ -17,6 +17,9 @@ export const Context = (props) => {
                 const tempstate = state.filter((item) => item.id !== action.payload.id)
                 return tempstate
 
+            case 'CLEAR':
+                return [];
+
             default: return state;
         }
 

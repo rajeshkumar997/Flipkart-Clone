@@ -6,7 +6,6 @@ import { Box, Button, Divider, styled, Typography } from '@mui/material'
 import Countdown from 'react-countdown';
 import { Link } from 'react-router-dom';
 
-
 const responsive = {
 
     desktop: {
@@ -15,7 +14,7 @@ const responsive = {
     },
     tablet: {
         breakpoint: { max: 1024, min: 464 },
-        items: 2
+        items: 3
     },
     mobile: {
         breakpoint: { max: 464, min: 0 },
@@ -32,12 +31,15 @@ const Component = styled(Box)`
 const Deal = styled(Box)`
     padding: 15px 20px;
     display: flex;
+    align-items: center;
+    justify-content:space-between;
 `;
 
 const Timer = styled(Box)`
     display: flex;
     margin-left: 10px;
     align-items: center;
+    justify-content:center;
     color: #7f7f7f
 `;
 
@@ -62,9 +64,9 @@ const Text = styled(Typography)`
 `;
 
 const Image = styled('img')({
-    width: 160,
+    width: 'auto',
     height: 150,
-    gap: 10
+    padding: 20
 });
 
 const renderer = ({ hours, minutes, seconds }) => {
@@ -77,16 +79,19 @@ const Slide = ({ title, timer }) => {
     return (
         <Component>
             <Deal>
-                <DealText>{title}</DealText>
-                {
-                    timer &&
-                    <Timer>
-                        <img src={timerURL} alt='timer' style={{ width: 24 }} />
-                        <Countdown date={Date.now() + 5.04e+7} renderer={renderer} />,
-                    </Timer>
-                }
-
-                <ViewAllButton variant='contained'>View All</ViewAllButton>
+                <div style={{ display: "flex" }}>
+                    <DealText>{title}</DealText>
+                    {
+                        timer &&
+                        <Timer>
+                            <img src={timerURL} alt='timer' style={{ width: 24 }} />
+                            <Countdown date={Date.now() + 5.04e+7} renderer={renderer} />,
+                        </Timer>
+                    }
+                </div>
+                <Link to='/AllItems'>
+                    <ViewAllButton variant='contained'>View All</ViewAllButton>
+                </Link>
             </Deal>
             <Divider />
             <Carousel
@@ -98,6 +103,7 @@ const Slide = ({ title, timer }) => {
                 autoPlaySpeed={3000}
                 keyBoardControl={true}
                 centerMode={true}
+                slidesToSlide={1}
                 dotListClass="custom-dot-list-style"
                 itemClass="carousel-item-padding-40-px"
                 containerClass="carousel-container"

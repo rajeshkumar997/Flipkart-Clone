@@ -22,6 +22,7 @@ const ColumnText = styled(TableRow)`
     & > td {
         font-size: 14px;
         margin-top: 10px;
+        border-bottom: 0;
     }
 `;
 
@@ -50,7 +51,7 @@ const ProductDetail = ({ product }) => {
                 <Typography><StyledBadge />Partner OfferExtra 10% off upto ₹500 on next furniture purchase</Typography>
             </SmallText>
 
-            <Table style={{ marginLeft: '20px' }}>
+            <Table>
                 <TableBody>
                     <ColumnText>
                         <TableCell style={{ color: '#878787' }}>Delivery</TableCell>

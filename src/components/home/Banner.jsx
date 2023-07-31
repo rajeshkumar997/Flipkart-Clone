@@ -7,14 +7,17 @@ import { bannerData } from '../../constants/data';
 const Image = styled('img')(({ theme }) => ({
     width: '100%',
     height: 280,
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
         objectFit: 'cover',
-        height: 180
+        height: 100
     }
 }));
 
 const responsive = {
-
+    superLargeDesktop: {
+        breakpoint: { max: 4000, min: 3000 },
+        items: 1
+    },
     desktop: {
         breakpoint: { max: 3000, min: 1024 },
         items: 1

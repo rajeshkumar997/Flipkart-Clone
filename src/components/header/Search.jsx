@@ -19,6 +19,7 @@ font-size: unset;
 `;
 
 const SearchIconWrapper = styled(Box)`
+margin-left: auto;
 color: blue;
 padding:  5px;
 display: flex;

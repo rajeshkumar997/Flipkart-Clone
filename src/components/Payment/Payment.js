@@ -4,11 +4,16 @@ import React, { useState } from 'react'
 import './payment.css'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { useNavigate } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
+import { useContext } from 'react';
+import { CartContext } from '../../context/productcontex';
 
 const Buy = () => {
     const { isAuthenticated } = useAuth0();
-    const form = useNavigate()
+    const [show, setShow] = useState(false)
+
+    const GlobalState = useContext(CartContext);
+    const { dispatch } = GlobalState;
 
     // define state to keep track of form values and whether they're filled
     const [formValues, setFormValues] = useState({
@@ -36,27 +41,20 @@ const Buy = () => {
     }
 
     // define function to show alert and clear form data when order button is clicked
-    const handleOrderButtonClick = () => {
-
+    const handleSubmit = (e) => {
+        e.preventDefault();
         if (formFilled) {
-            toast.success("Your Order successfully Done . . .", {
-                position: "top-right",
-                autoClose: 2000,
-                theme: "dark",
-            });
-            form("/")
+            Msg();
+            setShow(true)
+            dispatch({ type: 'CLEAR' });
             handleOrderPlacement();
-
         } else {
             toast.error("Please fill data first", {
                 position: "top-right",
                 autoClose: 2000,
                 theme: "light",
             });
-
         }
-
-
     }
 
     // define function to clear form data
@@ -70,21 +68,56 @@ const Buy = () => {
         });
         setFormFilled(false);
     }
+    const Msg = () => {
+        return (
+            <>
+                <div className="model-wrapper"></div>
+                <div className="model">
+                    <img className='zoom-in-out-box' src="/404-tick.png" alt="tick" width={100} />
+                    <div>
+                        <h1>Awesome!</h1>
+                        <h5>Your order has been Confirmed.</h5>
+                    </div>
+                    <NavLink to='/'>
+                        <button className='btn' onClick={() => setShow(false)}>OK</button>
+                    </NavLink>
+                </div>
+            </>
+        )
+    }
 
     return (
         <div className="container">
             {
                 isAuthenticated ? (
                     <Box className='form'>
-                        <TextField variant='standard' name='pincode' type="number" label='Enter Pincode . .' value={formValues.pincode} onChange={handleInputChange} onBlur={handleFormValuesChange} />
-                        <TextField variant='standard' name='name' type="text" label='Enter Name . . ' value={formValues.name} onChange={handleInputChange} onBlur={handleFormValuesChange} />
-                        <TextField variant='standard' name='email' type="email" label='Enter Email . .' value={formValues.email} onChange={handleInputChange} onBlur={handleFormValuesChange} />
-                        <TextField variant='standard' name='phone' type="number" label='Enter Phone Number . . ' value={formValues.phone} onChange={handleInputChange} onBlur={handleFormValuesChange} />
-                        <TextField label="Enter Address . ." multiline rows={4} variant="filled" name='address' value={formValues.address} onChange={handleInputChange} onBlur={handleFormValuesChange} />
-                        <Button variant="contained" onClick={handleOrderButtonClick}>Order Now</Button>
+                        <TextField variant='standard' name='name' type="text" label='Enter Name . . '
+                            value={formValues.name} onChange={handleInputChange} onBlur={handleFormValuesChange}
+                        />
+                        <TextField variant='standard' name='email' type="email" label='Enter Email . .'
+                            value={formValues.email} onChange={handleInputChange} onBlur={handleFormValuesChange}
+                        />
+                        <TextField variant='standard' name='phone' type="number" label='Enter Phone Number . . '
+                            value={formValues.phone} onChange={handleInputChange} onBlur={handleFormValuesChange}
+                        />
+                        <TextField variant='standard' name='pincode' type="number" label='Enter Pincode . .'
+                            value={formValues.pincode} onChange={handleInputChange} onBlur={handleFormValuesChange}
+                        />
+                        <TextField placeholder="Enter Address . ." multiline rows={4} name='address'
+                            value={formValues.address} onChange={handleInputChange} onBlur={handleFormValuesChange}
+                        />
+                        <Button variant="contained" onClick={handleSubmit}>Order Now</Button>
+                        {show && <Msg />}
                     </Box>
                 ) : (
-                    alert("Please login first..")
+                    (function tost() {
+                        toast.error("Please Login First", {
+                            position: "top-right",
+                            autoClose: 2000,
+                            theme: "light",
+                        })
+                    })()
+
                 )
             }
             <ToastContainer />

@@ -32,14 +32,14 @@ const PlusImage = styled('img')({
 
 const MenuButton = styled(IconButton)(({ theme }) => ({
     display: 'none',
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down('sm')]: {
         display: 'block'
     }
 }));
 
 const CustomButtonWrapper = styled('span')(({ theme }) => ({
     margin: '0 5% 0 auto',
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down('sm')]: {
         display: 'none'
     }
 }));
@@ -59,7 +59,7 @@ const Header = () => {
     }
 
     const list = () => (
-        <Box style={{width: 200}} onClick={handleClose}>
+        <Box style={{ width: 200 }} onClick={handleClose}>
             <List>
                 <listItem button>
                     <CustomButtons />
